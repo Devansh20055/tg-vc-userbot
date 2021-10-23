@@ -49,7 +49,12 @@ async def ytdl(link):
 @Client.on_message(filters.command(['play'], prefixes=f"{HNDLR}"))
 async def play(client, m: Message):
    replied = m.reply_to_message
-   chat_id = m.chat.id
+   if ";" in m.text:
+      chat_id = m.text.split(";")[1]
+      QUERY = m.text.split(";")[0]
+   else:
+      chat_id = m.chat.id
+      QUERY = m.text
    if replied:
       if replied.audio or replied.voice:
          huehue = await replied.reply("`Downloading`")
@@ -80,7 +85,7 @@ async def play(client, m: Message):
             await m.reply("`Reply to an Audio File or give something to Search`")
          else:
             huehue = await m.reply("`Searching...`")
-            query = m.text.split(None, 1)[1]
+            query = QUERY.split(None, 1)[1]
             search = ytsearch(query)
             if search==0:
                await huehue.edit("`Found Nothing for the Given Query`")
@@ -113,7 +118,7 @@ async def play(client, m: Message):
             await m.reply("`Reply to an Audio File or give something to Search`")
          else:
             huehue = await m.reply("`Searching...`")
-            query = m.text.split(None, 1)[1]
+            query = QUERY.split(None, 1)[1]
             search = ytsearch(query)
             if search==0:
                await huehue.edit("`Found Nothing for the Given Query`")
@@ -143,11 +148,16 @@ async def play(client, m: Message):
 
 @Client.on_message(filters.command(['stream'], prefixes=f"{HNDLR}"))
 async def stream(client, m: Message):
-   chat_id = m.chat.id
+   if ";" in m.text:
+      chat_id = m.text.split(";")[1]
+      QUERY = m.text.split(";")[0]
+   else:
+      chat_id = m.chat.id
+      QUERY = m.text
    if len(m.command) < 2:
       await m.reply("`Give A Link/LiveLink/.m3u8 URL/YTLink to Play Audio from 🎶`")
    else: 
-      link = m.text.split(None, 1)[1]
+      link = QUERY.split(None, 1)[1]
       huehue = await m.reply("`Trying to Play 📻`")
 
       # Filtering out YouTube URL's
