@@ -52,9 +52,9 @@ async def play(client, m: Message):
    if ";" in m.text:
       try:
          chat_id = (await client.get_chat(m.text.split(";")[1])).id
-      except Exception as e: 
+      except Exception as ec: 
          chat_id = m.chat.id
-         print(e)
+         print(ec)
       QUERY = m.text.split(";")[0]
    else:
       chat_id = m.chat.id
@@ -155,9 +155,9 @@ async def stream(client, m: Message):
    if ";" in m.text:
       try:
          chat_id = (await client.get_chat(m.text.split(";")[1])).id
-      except Exception as e: 
+      except Exception as ec: 
          chat_id = m.chat.id
-         print(e)
+         print(ec)
       QUERY = m.text.split(";")[0]
    else:
       chat_id = m.chat.id
