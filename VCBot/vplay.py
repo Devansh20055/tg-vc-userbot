@@ -51,16 +51,21 @@ async def ytdl(link):
 @Client.on_message(filters.command(['vplay'], prefixes=f"{HNDLR}"))
 async def vplay(client, m: Message):
    replied = m.reply_to_message
-   chat_id = m.chat.id
+   if ";" in m.text:
+      chat_id = m.text.split(";")[1]
+      QUERY = m.text.split(";")[0]
+   else:
+      chat_id = m.chat.id
+      QUERY = m.text
    if replied:
       if replied.video or replied.document:
          huehue = await replied.reply("`Downloading`")
          dl = await replied.download()
          link = replied.link
-         if len(m.command) < 2:
+         if len(QUERY.split()) < 2:
             Q = 720
          else:
-            pq = m.text.split(None, 1)[1]
+            pq = QUERY.split(None, 1)[1]
             if pq == "720" or "480" or "360":
                Q = int(pq)
             else:
@@ -94,11 +99,11 @@ async def vplay(client, m: Message):
             add_to_queue(chat_id, songname, dl, link, "Video", Q)
             await huehue.edit(f"**Started Playing Video ▶** \n**🎧 SONG** : [{songname}]({link}) \n**💬 CHAT** : `{chat_id}`", disable_web_page_preview=True)
       else:
-         if len(m.command) < 2:
+         if len(QUERY.split()) < 2:
             await m.reply("`Reply to an Audio File or give something to Search`")
          else:
             huehue = await m.reply("`Searching...`")
-            query = m.text.split(None, 1)[1]
+            query = QUERY.split(None, 1)[1]
             search = ytsearch(query)
             Q = 720
             hmmm = HighQualityVideo()
@@ -131,11 +136,11 @@ async def vplay(client, m: Message):
                         await huehue.edit(f"`{ep}`")
             
    else:
-         if len(m.command) < 2:
+         if len(QUERY.split()) < 2:
             await m.reply("`Reply to an Audio File or give something to Search`")
          else:
             huehue = await m.reply("`Searching...`")
-            query = m.text.split(None, 1)[1]
+            query = QUERY.split(None, 1)[1]
             search = ytsearch(query)
             Q = 720
             hmmm = HighQualityVideo()
@@ -170,16 +175,21 @@ async def vplay(client, m: Message):
 
 @Client.on_message(filters.command(['vstream'], prefixes=f"{HNDLR}"))
 async def vstream(client, m: Message):
-   chat_id = m.chat.id
-   if len(m.command) < 2:
+   if ";" in m.text:
+      chat_id = m.text.split(";")[1]
+      QUERY = m.text.split(";")[0]
+   else:
+      chat_id = m.chat.id
+      QUERY = m.text
+   if len(QUERY.split()) < 2:
       await m.reply("`Give A Link/LiveLink/.m3u8 URL/YTLink to Stream from 🎶`")
    else:
-      if len(m.command)==2:
-         link = m.text.split(None, 1)[1]
+      if len(QUERY.split())==2:
+         link = QUERY.split(None, 1)[1]
          Q = 720
          huehue = await m.reply("`Trying to Stream 💭`")
-      elif len(m.command)==3:
-         op = m.text.split(None, 1)[1]
+      elif len(QUERY.split())==3:
+         op = QUERY.split(None, 1)[1]
          link = op.split(None, 1)[0]
          quality = op.split(None, 1)[1]
          if quality == "720" or "480" or "360":
