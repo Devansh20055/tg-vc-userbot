@@ -50,7 +50,11 @@ async def ytdl(link):
 async def play(client, m: Message):
    replied = m.reply_to_message
    if ";" in m.text:
-      chat_id = m.text.split(";")[1]
+      try:
+         chat_id = (await client.get_chat(m.text.split(";")[1])).id
+      except Exception as e: 
+         chat_id = m.chat.id
+         print(e)
       QUERY = m.text.split(";")[0]
    else:
       chat_id = m.chat.id
@@ -149,7 +153,11 @@ async def play(client, m: Message):
 @Client.on_message(filters.command(['stream'], prefixes=f"{HNDLR}"))
 async def stream(client, m: Message):
    if ";" in m.text:
-      chat_id = m.text.split(";")[1]
+      try:
+         chat_id = (await client.get_chat(m.text.split(";")[1])).id
+      except Exception as e: 
+         chat_id = m.chat.id
+         print(e)
       QUERY = m.text.split(";")[0]
    else:
       chat_id = m.chat.id
