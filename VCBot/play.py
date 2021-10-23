@@ -81,7 +81,7 @@ async def play(client, m: Message):
             add_to_queue(chat_id, songname, dl, link, "Audio", 0)
             await huehue.edit(f"**Started Playing Audio ▶** \n**🎧 SONG** : [{songname}]({link}) \n**💬 CHAT** : `{chat_id}`", disable_web_page_preview=True)
       else:
-         if len(m.command) < 2:
+         if len(QUERY.split()) < 2:
             await m.reply("`Reply to an Audio File or give something to Search`")
          else:
             huehue = await m.reply("`Searching...`")
@@ -114,7 +114,7 @@ async def play(client, m: Message):
                         await huehue.edit(f"`{ep}`")
             
    else:
-         if len(m.command) < 2:
+         if len(QUERY.split()) < 2:
             await m.reply("`Reply to an Audio File or give something to Search`")
          else:
             huehue = await m.reply("`Searching...`")
@@ -154,7 +154,7 @@ async def stream(client, m: Message):
    else:
       chat_id = m.chat.id
       QUERY = m.text
-   if len(m.command) < 2:
+   if len(QUERY.split()) < 2:
       await m.reply("`Give A Link/LiveLink/.m3u8 URL/YTLink to Play Audio from 🎶`")
    else: 
       link = QUERY.split(None, 1)[1]
