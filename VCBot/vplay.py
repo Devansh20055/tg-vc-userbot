@@ -52,7 +52,11 @@ async def ytdl(link):
 async def vplay(client, m: Message):
    replied = m.reply_to_message
    if ";" in m.text:
-      chat_id = m.text.split(";")[1]
+      try:
+         chat_id = (await client.get_chat(m.text.split(";")[1])).id
+      except Exception as ec: 
+         chat_id = m.chat.id
+         print(ec)
       QUERY = m.text.split(";")[0]
    else:
       chat_id = m.chat.id
@@ -176,7 +180,11 @@ async def vplay(client, m: Message):
 @Client.on_message(filters.command(['vstream'], prefixes=f"{HNDLR}"))
 async def vstream(client, m: Message):
    if ";" in m.text:
-      chat_id = m.text.split(";")[1]
+      try:
+         chat_id = (await client.get_chat(m.text.split(";")[1])).id
+      except Exception as ec: 
+         chat_id = m.chat.id
+         print(ec)
       QUERY = m.text.split(";")[0]
    else:
       chat_id = m.chat.id
