@@ -35,7 +35,14 @@ async def skip(client, m: Message):
       
 @Client.on_message(contact_filter & filters.command(['end', 'stop'], prefixes=f"{HNDLR}"))
 async def stop(client, m: Message):
-   chat_id = m.chat.id
+   if len(m.command) < 2:
+      chat_id = m.chat.id
+   else:
+      try:
+         chat_id = (await client.get_chat(m.text.split(" ")[1])).id
+      except Exception as ec: 
+         chat_id = m.chat.id
+         print(ec)
    if chat_id in QUEUE:
       try:
          await call_py.leave_group_call(chat_id)
