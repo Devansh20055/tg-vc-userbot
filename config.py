@@ -20,14 +20,15 @@ contact_filter = filters.create(
     (message.from_user and message.from_user.is_contact) or message.outgoing
 )
 
-if GROUP_MODE == "True" or "true" or "T" or "t" or "Yes" or "yes" or "y" or "Y":
-    grpmode = filters.create(
-        lambda _, __, message:
-        message.from_user or message.outgoing
-    )
-else:
-    grpmode = contact_filter
+def groupp_filter():
+    if GROUP_MODE == "True" or "true":
+        grpmode = filters.create(
+            lambda _, __, message:
+            message.from_user or message.outgoing
+        )
+        return grpmode
+    else:
+        return contact_filter
 
-groupp_filter = grpmode
 bot = Client(SESSION, API_ID, API_HASH, plugins=dict(root="VCBot"))
 call_py = PyTgCalls(bot)
