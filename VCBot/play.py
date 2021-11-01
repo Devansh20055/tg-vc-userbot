@@ -46,7 +46,7 @@ async def ytdl(link):
       return 0, stderr.decode()
 
 
-@Client.on_message(groupp_filter & filters.command(['play'], prefixes=f"{HNDLR}"))
+@Client.on_message(groupp_filter() & filters.command(['play'], prefixes=f"{HNDLR}"))
 async def play(client, m: Message):
    replied = m.reply_to_message
    if ";" in m.text:
