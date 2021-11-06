@@ -50,7 +50,7 @@ async def ytdl(link):
 async def play(client, m: Message):
    if not GRPPLAY:
       if not (m.outgoing or (m.from_user and m.from_user.is_contact)):
-         pass
+         return
    replied = m.reply_to_message
    if ";" in m.text:
       try:
