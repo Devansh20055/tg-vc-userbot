@@ -48,7 +48,7 @@ async def ytdl(link):
 
 @Client.on_message(filters.command(['play'], prefixes=f"{HNDLR}"))
 async def play(client, m: Message):
- if not GRPPLAY and not (m.outgoing or (m.from_user and m.from_user.is_contact)):
+ if not GRPPLAY and (not m.outgoing or not m.from_user.is_contact):
    pass
  else:
    replied = m.reply_to_message
