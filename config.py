@@ -21,7 +21,7 @@ contact_filter = filters.create(
 )
 
 
-if GROUP_MODE == "True" or "true":
+if GROUP_MODE == ("True" or "true"):
     grp = True
 else:
     grp = False
