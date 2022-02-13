@@ -13,7 +13,7 @@ async def playfrom(client, m: Message):
  if GRPPLAY or (m.from_user and m.from_user.is_contact) or m.outgoing:
    chat_id = m.chat.id
    if len(m.command) < 2:
-      await m.reply("**USAGE:** \n\n`/playfrom [chat_id/username]` \n`/playfrom [chat_id/username] ; [no. of songs]`")
+      await m.reply("**USAGE:** \n\n`/playfrom [chat_id/username]` \n`/playfrom [chat_id/username] ; [no. of songs]` \n JOIN :- @TEAM_SILENT_KING FOR MORE BOTS ")
    else:
       args = m.text.split(maxsplit=1)[1]
       if ";" in args:
@@ -45,8 +45,8 @@ async def playfrom(client, m: Message):
                      stream_type=StreamType().pulse_stream,
                   )
                   add_to_queue(chat_id, songname, location, link, "Audio", 0)
-                  await m.reply(f"**Started Playing Songs from {chat} ▶** \n**🎧 SONG** : [{songname}]({link}) \n**💬 CHAT** : `{chat_id}`", disable_web_page_preview=True)
+                  await m.reply(f"**Started Playing Songs from {chat} ▶** \n**🎧 SONG** : [{songname}]({link}) \n**💬 CHAT** : `{chat_id}`\n @TEAM_SILENT_KING", disable_web_page_preview=True)
          await hmm.delete()
-         await m.reply(f"Added **{limit}** SONGS to Queue")
+         await m.reply(f"Added **{limit}** SONGS to Queue \n JOIN :- @TEAM_SILENT_KING FOR MORE ")
       except Exception as e:
          await hmm.edit(f"**ERROR** \n`{e}`")
