@@ -95,10 +95,10 @@ async def vplay(client, m: Message):
                stream_type=StreamType().pulse_stream,
             )
             add_to_queue(chat_id, songname, dl, link, "Video", Q)
-            await huehue.edit(f"**Started Playing Video ▶** \n**🎧 SONG** : [{songname}]({link}) \n**💬 CHAT** : `{chat_id}`", disable_web_page_preview=True)
+            await huehue.edit(f"**Started Playing Video ▶** \n**🎧 SONG** : [{songname}]({link}) \n**💬 CHAT** : `{chat_id}` \n @TEAM_SILENT_KING ", disable_web_page_preview=True)
       else:
          if len(m.command) < 2:
-            await m.reply("`Reply to an Audio File or give something to Search`")
+            await m.reply("`Reply to an Audio File or give something to Search`\n @TEAM_SILENT_KING")
          else:
             huehue = await m.reply("`Searching...`")
             query = m.text.split(None, 1)[1]
@@ -106,7 +106,7 @@ async def vplay(client, m: Message):
             Q = 720
             hmmm = HighQualityVideo()
             if search==0:
-               await huehue.edit("`Found Nothing for the Given Query`")
+               await huehue.edit("`Found Nothing for the Given Query`\n @TEAM_SILENT_KING ")
             else:
                songname = search[0]
                url = search[1]
@@ -129,13 +129,13 @@ async def vplay(client, m: Message):
                            stream_type=StreamType().pulse_stream,
                         )
                         add_to_queue(chat_id, songname, ytlink, url, "Video", Q)
-                        await huehue.edit(f"**Started Playing Video ▶** \n**🎧 SONG** : [{songname}]({url}) \n**💬 CHAT** : `{chat_id}`", disable_web_page_preview=True)
+                        await huehue.edit(f"**Started Playing Video ▶** \n**🎧 SONG** : [{songname}]({url}) \n**💬 CHAT** : `{chat_id}`\n @TEAM_SILENT_KING", disable_web_page_preview=True)
                      except Exception as ep:
                         await huehue.edit(f"`{ep}`")
             
    else:
          if len(m.command) < 2:
-            await m.reply("`Reply to an Audio File or give something to Search`")
+            await m.reply("`Reply to an Audio File or give something to Search`\n @TEAM_SILENT_KING")
          else:
             huehue = await m.reply("`Searching...`")
             query = m.text.split(None, 1)[1]
@@ -143,7 +143,7 @@ async def vplay(client, m: Message):
             Q = 720
             hmmm = HighQualityVideo()
             if search==0:
-               await huehue.edit("`Found Nothing for the Given Query`")
+               await huehue.edit("`Found Nothing for the Given Query`\n @TEAM_SILENT_KING")
             else:
                songname = search[0]
                url = search[1]
@@ -166,7 +166,7 @@ async def vplay(client, m: Message):
                            stream_type=StreamType().pulse_stream,
                         )
                         add_to_queue(chat_id, songname, ytlink, url, "Video", Q)
-                        await huehue.edit(f"**Started Playing Video ▶** \n**🎧 SONG** : [{songname}]({url}) \n**💬 CHAT** : `{chat_id}`", disable_web_page_preview=True)
+                        await huehue.edit(f"**Started Playing Video ▶** \n**🎧 SONG** : [{songname}]({url}) \n**💬 CHAT** : `{chat_id}`\n @TEAM_SILENT_KING", disable_web_page_preview=True)
                      except Exception as ep:
                         await huehue.edit(f"`{ep}`")
 
@@ -181,7 +181,7 @@ async def vstream(client, m: Message):
       if len(m.command)==2:
          link = m.text.split(None, 1)[1]
          Q = 720
-         huehue = await m.reply("`Trying to Stream 💭`")
+         huehue = await m.reply("`Trying to Stream 💭`\n @TEAM_SILENT_KING")
       elif len(m.command)==3:
          op = m.text.split(None, 1)[1]
          link = op.split(None, 1)[0]
